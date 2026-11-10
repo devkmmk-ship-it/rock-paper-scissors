@@ -1,7 +1,6 @@
 let humanScore = 0
 let computerScore = 0
-const humanChoice = getHumanChoice()
-const computerChoice = getComputerChoice()
+
 
 
 function getComputerChoice() {
@@ -27,31 +26,61 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+    let message = ""
     if (humanChoice === "Rock" && computerChoice === "Scissors") {
         humanScore++
-        return "You win! Rock beats Scissors"
+        message = "You win! Rock beats Scissors"
+        return message
     } else if (humanChoice === "Paper" && computerChoice === "Rock") {
         humanScore++
-        return "You win! Paper beats Rock"
+        message = "You win! Paper beats Rock"
+        return message
     } else if (humanChoice === "Scissors" && computerChoice === "Paper") {
         humanScore++
-        return "You win! Scissors beats Paper"
+        message = "You win! Scissors beats Paper"
+        return message
     } else if (humanChoice === computerChoice) {
-        return "Draw"
+        message = "Draw"
+        return message
     } else {
         computerScore++
-        return `You Lose ${computerChoice} beats ${humanChoice}`
+        message = `You Lose ${computerChoice} beats ${humanChoice}`
+        return message
     }
 }
 
+function playGame() {
+
+    let result = ""
+
+    for (let i=0; i<5; i++) {
+
+         let humanSelection = getHumanChoice()
+         let computerSelection = getComputerChoice()
+         console.log(playRound(humanSelection, computerSelection))
+         console.log("Human Choice: "+ humanSelection)
+         console.log("Computer Choice: "+ computerSelection)
+         console.log("Human Score: "+ humanScore)
+         console.log("Computer Score: "+ computerScore)
+         
+    }
+    if (humanScore > computerScore) {
+        result = "Human Wins"
+    } else if (humanScore < computerScore) {
+        result = "Computer Wins"
+    } else {
+        result = "It's a tie!"
+    }
+   
+    console.log(result)
+}
+
+playGame()
 
 
 
-console.log(playRound(humanChoice, computerChoice))
-console.log("Human Choice: "+ humanChoice)
-console.log("Computer Choice: "+ computerChoice)
-console.log("Human Score: "+ humanScore)
-console.log("Computer Score: "+ computerScore)
+
+
 
 
 
