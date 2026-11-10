@@ -25,45 +25,40 @@ function getHumanChoice() {
     }
 }
 
+
 function playRound(humanChoice, computerChoice) {
     let message = ""
-    if (humanChoice === "Rock" && computerChoice === "Scissors") {
+    if ((humanChoice === "Rock" && computerChoice === "Scissors") ||
+       (humanChoice === "Paper" && computerChoice === "Rock") || 
+       (humanChoice === "Scissors" && computerChoice === "Paper")) {
         humanScore++
-        message = "You win! Rock beats Scissors"
+        message = `You win, ${humanChoice} beats ${computerChoice}`
         return message
-    } else if (humanChoice === "Paper" && computerChoice === "Rock") {
-        humanScore++
-        message = "You win! Paper beats Rock"
-        return message
-    } else if (humanChoice === "Scissors" && computerChoice === "Paper") {
-        humanScore++
-        message = "You win! Scissors beats Paper"
-        return message
-    } else if (humanChoice === computerChoice) {
+    }  else if (humanChoice === computerChoice) {
         message = "Draw"
         return message
     } else {
         computerScore++
-        message = `You Lose ${computerChoice} beats ${humanChoice}`
+        message = `You Lose, ${computerChoice} beats ${humanChoice}`
         return message
     }
 }
+
 
 function playGame() {
 
     let result = ""
 
     for (let i=0; i<5; i++) {
-
          let humanSelection = getHumanChoice()
-         let computerSelection = getComputerChoice()
-         console.log(playRound(humanSelection, computerSelection))
-         console.log("Human Choice: "+ humanSelection)
-         console.log("Computer Choice: "+ computerSelection)
-         console.log("Human Score: "+ humanScore)
-         console.log("Computer Score: "+ computerScore)
-         
+         let computerSelection = getComputerChoice() 
+       console.log(`
+                    Human choose ${humanSelection} and Computer choose ${computerSelection}
+                    ${playRound(humanSelection, computerSelection)}
+                    Human Score: ${humanScore} <> Computer Score: ${computerScore}
+                        `)   
     }
+
     if (humanScore > computerScore) {
         result = "Human Wins"
     } else if (humanScore < computerScore) {
